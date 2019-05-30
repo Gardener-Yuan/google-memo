@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/index.css"/>
+  <meta charset="utf-8">
+</head>
+<body>
+<div id="app">
+  <h1 class="h1">TODO MEMO </h1>
+  <ul class="todo-title">
+    <li data-target="todo">事件名称</li>
+    <li data-target="time">提醒时间</li>
+    <li class="hidden"><button type="button" class="btn-add"></button></li>
+  </ul>
+  <form class="form-add" id="todo-form">
+    <input type="text" name="todo" value="" placeholder="please input your todos..."/>
+    <input type="text" name="time" value="" placeholder="yyyy/mm/dd hh:mm:ss"/>
+    <button type="submit" class="btn-add">+</button>
+  </form>
+  <ul class="todo-list">
+  </ul>
+</div>
+<script src="js/store.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
