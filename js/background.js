@@ -9,7 +9,9 @@ chrome.runtime.onInstalled.addListener(async () => {
       const now = new Date().valueOf();
       const dataTime = new Date(o.time).valueOf();
 
-      if (!o.isDone && (now >= dataTime && now < dataTime + 1000 * 60 * 60 * 24)) {
+      if (!o.isDone &&
+        ((now >= dataTime || now < dataTime - 1000 * 60 * 5) &&
+          now < dataTime + 1000 * 60 * 60 * 24)) {
         if (!("Notification" in window)) {
           alert(`${o.todo} - ${o.time}`)
         } else if (Notification.permission === "granted") {
