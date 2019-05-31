@@ -75,9 +75,36 @@ class StoreDB {
   }
 
   updatedData(object) {
-    let request = db.transaction([this.TABLE_NAME], 'readwrite')
-      .objectStore(this.TABLE_NAME)
-      .put(object);
+    let request = this.db.transaction([this.TABLE_NAME], 'readwrite')
+      .objectStore(this.TABLE_NAME);
+
+    request.openCursor().onsuccess = (e) => {
+      let cursor = e.target.result;
+
+      if (cursor) {
+        console.log(cursor);
+        let value = cursor.value;
+        let updateRequest = null;
+
+        if (cursor.key === object.key) {
+          value.todo = object.todo;
+          value.time = object.time;
+          value.isDone = object.isDone;
+
+          updateRequest = cursor.update(value);
+          updateRequest.onerror = function(){
+            console.log('游标更新失败');
+          };
+          updateRequest.onsuccess = function(){
+            console.log('游标更新成功');
+          }
+        } else {
+          cursor.continue();
+        }
+      } else {
+        console.log('没有更多数据了！');
+      }
+    };
 
     request.onsuccess = (e) => {
       console.log('数据更新成功');

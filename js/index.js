@@ -24,6 +24,20 @@ class Memo {
         e.preventDefault();
         this.removeItem(e.target, +e.target.dataset.key);
       }
+
+      // checkbox点击
+      if (e.target.className.includes('checkbox-isdone')) {
+        let curData = this.todolist.find(o => o.key === +e.target.parentNode.parentNode.dataset.key);
+
+        curData.isDone = !!e.target.checked;
+        window.StoreDB.updatedData(curData);
+
+        if (curData.isDone) {
+          e.target.parentNode.parentNode.className = 'delete';
+        } else {
+          e.target.parentNode.parentNode.className = '';
+        }
+      }
     })
   }
 
@@ -82,8 +96,8 @@ class Memo {
     const outTime = (now > dataTime + 1000 * 60 * 60 * 24);
 
     return (
-      `<li data-key="${data.key}" class="${outTime ? 'delete' : ''}">
-          <p><input type="checkbox" name="isDone"></p>
+      `<li data-key="${data.key}" class="${outTime || data.isDone ? 'delete' : ''}">
+          <p><input class="checkbox-isdone" type="checkbox" name="isDone" ${data.isDone ? 'checked' : ''}></p>
           <p class="flex-1 middle">${data.todo}</p>
           <p class="flex-1 text-right">${data.time}</p>
           <p class="delete-wrap text-right">
