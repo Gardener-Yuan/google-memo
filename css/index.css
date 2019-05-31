@@ -21,6 +21,15 @@ html {
 .form-add {
   display: flex;
   align-items: center;
+  flex-direction: column;
+}
+
+.form-add div {
+  width: 100%;
+}
+
+.form-add input {
+  width: 100%;
 }
 
 input {
@@ -74,18 +83,6 @@ input.error {
 
 .todo-title li {
   font-weight: bold;
-}
-
-input[name=time],
-li[data-target=time] {
-  width: 140px;
-  margin-right: 10px;
-}
-
-input[name=todo],
-li[data-target=todo]  {
-  flex: 1;
-  margin-right: 10px;
 }
 
 .delete-wrap {

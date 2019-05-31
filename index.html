@@ -7,15 +7,16 @@
 <body>
 <div id="app">
   <h1 class="h1">TODO MEMO </h1>
-  <ul class="todo-title">
-    <li data-target="todo">事件名称</li>
-    <li data-target="time">提醒时间</li>
-    <li class="hidden"><button type="button" class="btn-add"></button></li>
-  </ul>
   <form class="form-add" id="todo-form">
-    <input type="text" name="todo" value="" placeholder="please input your todos..."/>
-    <input type="text" name="time" value="" placeholder="yyyy/mm/dd hh:mm:ss"/>
-    <button type="submit" class="btn-add">+</button>
+    <div>
+      <label>事件名称: </label>
+      <input type="text" name="todo" value="" placeholder="please input your todos..."/>
+    </div>
+    <div>
+      <label>提醒时间: </label>
+      <input type="datetime-local" name="time" value="" placeholder="yyyy/mm/dd hh:mm:ss"/>
+    </div>
+    <button type="submit" class="btn-add hidden">+</button>
   </form>
   <ul class="todo-list">
   </ul>

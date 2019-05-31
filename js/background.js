@@ -1,8 +1,8 @@
 chrome.runtime.onInstalled.addListener(async () => {
-  const data = await window.StoreDB.createIndexDB();
   console.log('进入background');
 
   async function checkData() {
+    const data = await window.StoreDB.createIndexDB();
     const list = await window.StoreDB.selectData();
 
     list.forEach((o) => {
@@ -33,6 +33,6 @@ chrome.runtime.onInstalled.addListener(async () => {
   // 监听数据存储变化做通知监听
   setInterval(() => {
     checkData();
-    console.log('每隔五分钟监听一次');
-  }, 1000 * 60 * 5)
+    console.log('每隔分钟监听一次');
+  }, 1000 * 60)
 });

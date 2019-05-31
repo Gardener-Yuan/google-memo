@@ -33,6 +33,10 @@ class StoreDB {
 
   selectData() {
     return new Promise((resolve, reject) => {
+      if (!this.db) {
+        reject([]);
+      }
+
       let objectStore = this.db.transaction([this.TABLE_NAME]).objectStore(this.TABLE_NAME);
       let arrs = [];
 

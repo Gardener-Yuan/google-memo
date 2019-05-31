@@ -58,15 +58,15 @@ class Memo {
     const $timeEl = document.querySelector('input[name=time]');
     const $todoEl = document.querySelector('input[name=todo]');
 
-    if (!(/^[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}\s[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}$/.test(formData.get('time')))){
-      $timeEl.setAttribute('placeholder', 'Please input format time');
-      $timeEl.className += ' error';
-      return;
-    } else {
-      $timeEl.className = '';
-    }
+    // if (!(/^[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}\s[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}$/.test(formData.get('time')))){
+    //   $timeEl.setAttribute('placeholder', 'Please input format time');
+    //   $timeEl.className += ' error';
+    //   return;
+    // } else {
+    //   $timeEl.className = '';
+    // }
 
-    if (!$todoEl.value) {
+    if (!$todoEl.value || !$timeEl.value) {
       $timeEl.className += ' error';
       return;
     } else {
@@ -94,12 +94,14 @@ class Memo {
     const now = new Date().valueOf();
     const dataTime = new Date(data.time).valueOf();
     const outTime = (now > dataTime + 1000 * 60 * 60 * 24);
+    const curTime = new Date(data.time);
+    const format = `${curTime.getFullYear()}/${(curTime.getMonth() + 1).toString().padStart(2, "0")}/${curTime.getDay().toString().padStart(2, "0")} ${curTime.getHours().toString().padStart(2, "0")}:${curTime.getMinutes().toString().padStart(2, "0")}:${curTime.getSeconds().toString().padStart(2, "0")}`;
 
     return (
       `<li data-key="${data.key}" class="${outTime || data.isDone ? 'delete' : ''}">
           <p><input class="checkbox-isdone" type="checkbox" name="isDone" ${data.isDone ? 'checked' : ''}></p>
           <p class="flex-1 middle">${data.todo}</p>
-          <p class="flex-1 text-right">${data.time}</p>
+          <p class="flex-1 text-right">${format}</p>
           <p class="delete-wrap text-right">
             <button type="button" class="btn btn-delete" data-key="${data.key}">-</button>
           </p>
