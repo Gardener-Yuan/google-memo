@@ -95,7 +95,7 @@ class Memo {
     const dataTime = new Date(data.time).valueOf();
     const outTime = (now > dataTime + 1000 * 60 * 60 * 24);
     const curTime = new Date(data.time);
-    const format = `${curTime.getFullYear()}/${(curTime.getMonth() + 1).toString().padStart(2, "0")}/${curTime.getDay().toString().padStart(2, "0")} ${curTime.getHours().toString().padStart(2, "0")}:${curTime.getMinutes().toString().padStart(2, "0")}:${curTime.getSeconds().toString().padStart(2, "0")}`;
+    const format = `${curTime.getFullYear()}/${(curTime.getMonth() + 1).toString().padStart(2, "0")}/${curTime.getDate().toString().padStart(2, "0")} ${curTime.getHours().toString().padStart(2, "0")}:${curTime.getMinutes().toString().padStart(2, "0")}:${curTime.getSeconds().toString().padStart(2, "0")}`;
 
     return (
       `<li data-key="${data.key}" class="${outTime || data.isDone ? 'delete' : ''}">
